@@ -117,3 +117,34 @@ def top_n_by_rating(movies, n=3):
     top_movies = sorted_movies[:n]
     finaly = [(movie["title"], movie["rating"]) for movie in top_movies]
     return finaly
+
+def count_by_genre(movies):
+    genre_count = {}
+    for movie in movies:
+        genres = movie["genres"]
+        for genre in genres:
+            genre_count[genre] = genre_count.get(genre, 0) + 1
+    return genre_count
+
+def actor_filmography(movies):
+    act_dic = {}
+    for movie in movies:
+        actors = movie["actors"]
+        title = movie["title"]
+        for actor in actors:
+            if actor not in act_dic:
+                act_dic[actor] = []
+            act_dic[actor].append(title)
+    return act_dic
+
+
+def high_rated_dict(movies):
+    rat = average_rating(movies)
+    result = {
+        movie["title"]: movie["rating"]
+        for movie in movies 
+        if movie["rating"] > rat
+    }
+    return result 
+print(high_rated_dict(movies))
+
