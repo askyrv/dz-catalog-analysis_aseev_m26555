@@ -106,4 +106,14 @@ def format_report_line(movie):
         f"жанры: {genres_str}"
     )
     return report
-print(format_report_line(movies[8]))
+
+def titles_sorted_by_rating(movies):
+    sorted_movies = sorted(movies, key=lambda x: x["rating"], reverse=True)
+    titles = [movie["title"] for movie in sorted_movies]
+    return titles
+
+def top_n_by_rating(movies, n=3):
+    sorted_movies = sorted(movies, key=lambda x: x["rating"], reverse=True)
+    top_movies = sorted_movies[:n]
+    finaly = [(movie["title"], movie["rating"]) for movie in top_movies]
+    return finaly
