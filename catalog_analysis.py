@@ -146,5 +146,24 @@ def high_rated_dict(movies):
         if movie["rating"] > rat
     }
     return result 
-print(high_rated_dict(movies))
+
+def all_genres(movies):
+    uniq_genres = set()
+    for movie in movies:
+        uniq_genres = uniq_genres | movie["genres"]
+    return uniq_genres
+
+def common_actors(movie1, movie2):
+    actors1 = set(movie1["actors"])
+    actors2 = set(movie2["actors"])
+    return actors1 & actors2
+
+def genres_only_in_one(movies_a, movies_b):
+    genresA = set()
+    for movie in movies_a:
+        genresA.update(movie["genres"])
+    genresB = set()
+    for movie in movies_b:
+        genresB.update(movie["genres"])
+    return genresA - genresB
 
